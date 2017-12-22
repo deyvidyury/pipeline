@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>RISC 16 Simulator - Pipeline</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
+    <style media="screen">
+        body{
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td colspan="4">PROGRAMCOUNTER</td>
+            <td colspan="4" id="program-counter"></td>
+        </tr>
+        <tr>
+            <td colspan="4">Instruction memory</td>
+            <td></td>
+            <td colspan="4">REGISTER FILE</td>
+        </tr>
+        <tr>
+            <td id="instruction-memory" colspan="4"></td>
+            <td></td>
+            <td colspan="4">
+                r0: <span id="r0">0000000000000000</span><br>
+                r1: <span id="r1">0000000000000000</span><br>
+                r2: <span id="r2">0000000000000000</span><br>
+                r3: <span id="r3">0000000000000000</span><br>
+                r4: <span id="r4">0000000000000000</span><br>
+                r5: <span id="r5">0000000000000000</span><br>
+                r6: <span id="r6">0000000000000000</span><br>
+                r7: <span id="r7">0000000000000000</span><br>
+            </td>
+        </tr>
+        <tr>
+            <td>OP</td>
+            <td>rA</td>
+            <td>rB</td>
+            <td>imm</td>
+            <td>rC</td>
+            <td>PC</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>IF/ID</td>
+        </tr>
+        <tr id="if-id">
+            <td class="op">000</td>
+            <td class="rA">000</td>
+            <td class="rB">000</td>
+            <td class="imm">0000</td>
+            <td class="rC">000</td>
+            <td class="pc">0000000000000000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td id="ctl7" colspan="3">
+                <span>CTL7</span><br>
+                OP: <span class="op"></span><br>
+                rA: <span class="rA"></span><br>
+                rB: <span class="rB"></span><br>
+                rC: <span class="rC"></span><br>
+                OP_ID_EX: <span class="OP-id-ex"></span><br>
+                rT_ID_EX: <span class="rT-id-ex"></span><br>
+                pstall: <span class="pstal"></span><br>
+            </td>
+            <td colspan="3">
+                <span id="muxs2">
+                    MUXs2<br>
+                    rA: <span class="rA"></span><br>
+                    rC: <span class="rC"></span><br>
+                    out: <span class="out"></span><br>
+                    <br>
+                    CTL6<br>
+                    CTL7_OP_OUT: <span class="ctl6-op"></span><br>
+                    CTL6_muxs2: <span class="ctl6-muxs2"></span><br>
+                    CTL6_op0: <span class="ctl6-muxop0"></span>
+                </span>
+            </td>
+            <td>
+                Left-shift-6<br>
+                <span class="left-shift-6"></span><br>
+                <br>
+                Sign-ext-7<br>
+                <span class="sign-ext-7"></span>
+                <br>
+                MUXop0<br>
+                out: <span class="muxop0-out"></span>
+            </td>
+
+            <td colspan="4">
+                REGISTER FILE<br>
+                r0: <span id="r0">0000000000000000</span><br>
+                r1: <span id="r1">0000000000000000</span><br>
+                r2: <span id="r2">0000000000000000</span><br>
+                r3: <span id="r3">0000000000000000</span><br>
+                r4: <span id="r4">0000000000000000</span><br>
+                r5: <span id="r5">0000000000000000</span><br>
+                r6: <span id="r6">0000000000000000</span><br>
+                r7: <span id="r7">0000000000000000</span><br>
+            </td>
+        </tr>
+        <tr>
+            <td>OP</td>
+            <td>rT</td>
+            <td>s1</td>
+            <td></td>
+            <td>s2</td>
+            <td>PC</td>
+            <td>OPERAND0</td>
+            <td>OPERAND2</td>
+            <td>OPERAND1</td>
+            <td>ID/EX</td>
+        </tr>
+        <tr id="id-ex">
+            <td class="op">000</td>
+            <td class="rT">000</td>
+            <td class="s1">000</td>
+            <td></td>
+            <td class="s2">000</td>
+            <td class="pc">0000000000000000</td>
+            <td class="operand0">0000000000000000</td>
+            <td class="operand2">0000000000000000</td>
+            <td class="operand1">0000000000000000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>OP</td>
+            <td>rT</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>PC</td>
+            <td>STORE DATA</td>
+            <td></td>
+            <td>ALU OUTPUT</td>
+            <td>EX/MEM</td>
+        </tr>
+        <tr id="ex-mem">
+            <td class="op">000</td>
+            <td class="rT">000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="pc">0000000000000000</td>
+            <td class="store-data">0000000000000000</td>
+            <td></td>
+            <td class="alu-output">0000000000000000</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>rT</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>RF WRITE DATA</td>
+            <td></td>
+            <td>MEM/WB</td>
+        </tr>
+        <tr id="mem-wb">
+            <td></td>
+            <td class="rT">000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="rf-write-data">0000000000000000</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>rT</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>RF WRITE DATA</td>
+            <td></td>
+            <td>WB/END</td>
+        </tr>
+        <tr id="wb-end">
+            <td></td>
+            <td class="rT">000</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="rf-write-data">0000000000000000</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <button id="run">Run</button>  <button id="step">Step</button> <button id="stop">Stop</button>
+
+
+    <script src="js/jquery.min.js" charset="utf-8"></script>
+    <script src="js/helpers.js" charset="utf-8"></script>
+    <script src="js/globals.js" charset="utf-8"></script>
+    <script src="js/pipeline_registers.js" charset="utf-8"></script>
+    <script src="js/controls.js" charset="utf-8"></script>
+    <script src="js/muxes.js" charset="utf-8"></script>
+    <script src="js/pipe.js" charset="utf-8"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+</body>
+</html>
