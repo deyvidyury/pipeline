@@ -23,15 +23,15 @@ function fetchStage(){
   // Atualiza registradores IF/ID
   IF_ID.update();
 
-  $("#program-counter").html((PROGRAMCOUNTER.value+'').toString(16));
+//   $("#program-counter").html((PROGRAMCOUNTER.value+'').toString(16));
   // $("#instruction-memory").html(INSTRUCTION_MEMORY.join('<br>'));
 
-  $("#if-id .op").html(IF_ID.OP);
-  $("#if-id .rA").html(IF_ID.rA);
-  $("#if-id .rB").html(IF_ID.rB);
-  $("#if-id .imm").html(IF_ID.imm);
-  $("#if-id .rC").html(IF_ID.rC);
-  $("#if-id .pc").html((IF_ID.PC+'').toString(16));
+//   $("#if-id .op").html(IF_ID.OP);
+//   $("#if-id .rA").html(IF_ID.rA);
+//   $("#if-id .rB").html(IF_ID.rB);
+//   $("#if-id .imm").html(IF_ID.imm);
+//   $("#if-id .rC").html(IF_ID.rC);
+//   $("#if-id .pc").html((IF_ID.PC+'').toString(16));
   // PROGRAMCOUNTER.update();
 }
 
@@ -61,14 +61,14 @@ function decodeStage(){
   ID_EX.update();
 
   // Draw registers
-  $("#id-ex .op").html(ID_EX.OP);
-  $("#id-ex .rT").html(ID_EX.rT);
-  $("#id-ex .s1").html(ID_EX.s1);
-  $("#id-ex .s2").html(ID_EX.s2);
-  $("#id-ex .pc").html((ID_EX.PC+'').toString(16));
-  $("#id-ex .operand0").html((ID_EX.operand0+'').toString(16));
-  $("#id-ex .operand2").html((ID_EX.operand2+'').toString(16));
-  $("#id-ex .operand1").html((ID_EX.operand1+'').toString(16));
+//   $("#id-ex .op").html(ID_EX.OP);
+//   $("#id-ex .rT").html(ID_EX.rT);
+//   $("#id-ex .s1").html(ID_EX.s1);
+//   $("#id-ex .s2").html(ID_EX.s2);
+//   $("#id-ex .pc").html((ID_EX.PC+'').toString(16));
+//   $("#id-ex .operand0").html((ID_EX.operand0+'').toString(16));
+//   $("#id-ex .operand2").html((ID_EX.operand2+'').toString(16));
+//   $("#id-ex .operand1").html((ID_EX.operand1+'').toString(16));
 
 }
 
@@ -90,11 +90,11 @@ function executeStage(){
     // Update EX_MEM registers
     EX_MEM.update();
     // Draw registers
-    $("#ex-mem .op").html(EX_MEM.OP);
-    $("#ex-mem .rT").html(EX_MEM.rT);
-    $("#ex-mem .pc").html((EX_MEM.PC+'').toString(16));
-    $("#ex-mem .store-data").html((EX_MEM.storeData+'').toString(16));
-    $("#ex-mem .alu-output").html((EX_MEM.aluOutput+'').toString(16));
+    // $("#ex-mem .op").html(EX_MEM.OP);
+    // $("#ex-mem .rT").html(EX_MEM.rT);
+    // $("#ex-mem .pc").html((EX_MEM.PC+'').toString(16));
+    // $("#ex-mem .store-data").html((EX_MEM.storeData+'').toString(16));
+    // $("#ex-mem .alu-output").html((EX_MEM.aluOutput+'').toString(16));
 }
 
 function memoryStage(){
@@ -107,8 +107,8 @@ function memoryStage(){
     // Update MEM_WB registers
     MEM_WB.update();
     // Draw registers
-    $("#mem-wb .rT").html(MEM_WB.rT);
-    $("#mem-wb .rf-Write-Data").html(MEM_WB.rfWriteData);
+    // $("#mem-wb .rT").html(MEM_WB.rT);
+    // $("#mem-wb .rf-Write-Data").html(MEM_WB.rfWriteData);
 }
 
 function writebackStage(){

@@ -15,6 +15,20 @@
 
     <table>
         <tr>
+            <td colspan="4"></td>
+            <td colspan="3">
+                <span id="muxpc">
+                    MUXpc
+                    <br> in:
+                    <span class="in"></span>
+                    <br> signal:
+                    <span class="signal"></span>
+                    <br> out:
+                    <span class="out"></span>
+                </span>
+            </td>
+        </tr>
+        <tr>
             <td colspan="4">PROGRAMCOUNTER</td>
             <td colspan="4" id="program-counter"></td>
         </tr>
@@ -69,13 +83,14 @@
                 rC: <span class="rC"></span><br>
                 OP_ID_EX: <span class="OP-id-ex"></span><br>
                 rT_ID_EX: <span class="rT-id-ex"></span><br>
-                pstall: <span class="pstal"></span><br>
+                pstall: <span class="pstall"></span><br>
             </td>
             <td colspan="3">
                 <span id="muxs2">
                     MUXs2<br>
                     rA: <span class="rA"></span><br>
                     rC: <span class="rC"></span><br>
+                    signal: <span class="signal"></span><br>
                     out: <span class="out"></span><br>
                     <br>
                     CTL6<br>
@@ -92,11 +107,12 @@
                 <span class="sign-ext-7"></span>
                 <br>
                 MUXop0<br>
+                signal: <span class="muxop0-signal"></span><br>
                 out: <span class="muxop0-out"></span>
             </td>
 
             <td colspan="4">
-                REGISTER FILE<br>
+                <!-- REGISTER FILE<br>
                 r0: <span id="r0">0000000000000000</span><br>
                 r1: <span id="r1">0000000000000000</span><br>
                 r2: <span id="r2">0000000000000000</span><br>
@@ -104,7 +120,7 @@
                 r4: <span id="r4">0000000000000000</span><br>
                 r5: <span id="r5">0000000000000000</span><br>
                 r6: <span id="r6">0000000000000000</span><br>
-                r7: <span id="r7">0000000000000000</span><br>
+                r7: <span id="r7">0000000000000000</span><br> -->
             </td>
         </tr>
         <tr>
@@ -215,5 +231,6 @@
     <script src="js/muxes.js" charset="utf-8"></script>
     <script src="js/pipe.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/draw.js" charset="utf-8"></script>
 </body>
 </html>
