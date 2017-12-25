@@ -15,16 +15,6 @@ PROGRAMCOUNTER.update = function(){
     }
 }
 
-
-// Program Counter
-// var PROGRAMCOUNTER = {
-//     // init: 0, // To be changed on the very first time the program runs
-//     // value: (PROGRAMCOUNTER.init === 0) ? 0 : MUXpc.out
-//     // value: (PROGRAMCOUNTER.init === 0) ? 0 : 1
-//     init : 0,
-//     value : 0
-// };
-//
 // Instruction Memory
 var INSTRUCTION_MEMORY =   ['1010010000000110',
 '1010100010000010',
@@ -56,28 +46,22 @@ REGISTERFILE.SRC2_DATA = 0;
 REGISTERFILE.SRC1_DATA = 0;
 
 REGISTERFILE.update = function(){
-    REGISTERFILE.SRC1 = bin2dec(IF_ID.rB);
+    REGISTERFILE.SRC1 = bin2dec(IF_ID.rB_OUT);
     REGISTERFILE.SRC2 = bin2dec(MUXs2.out);
-    REGISTERFILE.TGT = bin2dec(MEM_WB.rT);
+    REGISTERFILE.TGT = bin2dec(MEM_WB.rT_OUT);
 
 
     REGISTERFILE.WErf = CTL1.WErf; // Off = 0; On = 1
 
     if(REGISTERFILE.WErf){
-        REGISTERFILE.TGT_DATA = MEM_WB.rfWriteData;
+        REGISTERFILE.TGT_DATA = MEM_WB.rfWriteData_OUT;
         REGISTERFILE[REGISTERFILE.RGT] = REGISTERFILE.TGT_DATA;
     }
-
 
     // data output
     REGISTERFILE.SRC2_DATA = REGISTERFILE.registers[REGISTERFILE.SRC2];
     REGISTERFILE.SRC1_DATA = REGISTERFILE.registers[REGISTERFILE.SRC1];
 }
-
-// function to update instruciton memory
-// updateInstrutionMemory: function(){}
-
-
 
 // Data memory
 var DATAMEMORY = {};
@@ -92,8 +76,8 @@ DATAMEMORY.DATA_OUT = '0000000000000000';
 // Function to update the instruction memory in case WEdmem is 1
 DATAMEMORY.update = function(){
     // data input
-    DATAMEMORY.DATA_IN = EX_MEM.storeData;
-    DATAMEMORY.ADDR = EX_MEM.aluOutput;
+    DATAMEMORY.DATA_IN = EX_MEM.storeData_OUT;
+    DATAMEMORY.ADDR = EX_MEM.aluOutput_OUT;
     DATAMEMORY.WEdmem = CTL2.WEdmem;
 
     // data output
@@ -108,13 +92,13 @@ DATAMEMORY.update = function(){
 
 var ALU = {};
 // IN
-ALU.SRC2 = '0000000000000000';
-ALU.SRC1 = '0000000000000000';
+ALU.SRC2 = 0;
+ALU.SRC1 = 0;
 
 // FUNC
 ALU.Func = 'ADD';
 // OUT
-ALU.out = '0000000000000000'; // To be implemented
+ALU.out = 0; // To be implemented
 
 // SIGNALS
 ALU.EQ = 0;
@@ -149,18 +133,21 @@ ALU.update = function(){
 
 // Auxiliary registers
 var LEFT_SHIFT_6 = {};
-LEFT_SHIFT_6.value = '0000000000000000'; // Apply corrent operation
+LEFT_SHIFT_6.value = 0; // Apply corrent operation
 LEFT_SHIFT_6.update = function(){
-    LEFT_SHIFT_6.value = IF_ID.rB + IF_ID.imm + IF_ID.rC + '000000'; // Apply corrent operation
+    // LEFT_SHIFT_6.value = LEFT_SHIFT_6.toString(16); // Apply corrent operation
+    LEFT_SHIFT_6.value = ''.concat((IF_ID.rB_OUT+'').toString(3), (IF_ID.imm_OUT+'').toString(4), (IF_ID.rC_OUT+'').toString(3) , '000000');
+    LEFT_SHIFT_6.value = bin2dec(LEFT_SHIFT_6.value);
 };
 
 var SIGN_EXT_7 = {};
-SIGN_EXT_7.value = '0000000000000000'; // Apply corrent operation
+SIGN_EXT_7.value = 0; // Apply corrent operation
 SIGN_EXT_7.update = function(){
-    SIGN_EXT_7.value = IF_ID.imm + IF_ID.rC; // Apply corrent operation
+    SIGN_EXT_7.value = ''.concat((IF_ID.imm_OUT+'').toString(4), (IF_ID.rC_OUT+'').toString(3)); // Apply corrent operation
     if(SIGN_EXT_7.value.charAt(0) === '0'){
         SIGN_EXT_7.value = '000000000' + SIGN_EXT_7.value;
     } else {
         SIGN_EXT_7.value = '111111111' + SIGN_EXT_7.value;
     }
+    SIGN_EXT_7.value = bin2dec(SIGN_EXT_7.value);
 };

@@ -25,11 +25,11 @@ var REGISTERFILE = {
   registers: [0,0,0,0,0,0,0,0],
 
   // addresses input
-  SRC1: IF_ID.rB,
+  SRC1: IF_ID.rB_OUT,
   SRC2: MUXs2.out,
-  TGT: MEM_WB.rT,
+  TGT: MEM_WB.rT_OUT,
   // data input
-  TGT_DATA: MEM_WB.rfWriteData,
+  TGT_DATA: MEM_WB.rfWriteData_OUT,
 
   WErf: CTL1.WErf,
 
@@ -44,8 +44,8 @@ var REGISTERFILE = {
 // Data memory
 var DATAMEMORY = {
     // data input
-    DATA_IN: EX_MEM.storeData,
-    ADDR: EX_MEM.aluOutput,
+    DATA_IN: EX_MEM.storeData_OUT,
+    ADDR: EX_MEM.aluOutput_OUT,
 
     // data output
     DATA_OUT: INSTRUCTION_MEMORY[this.ADDR],

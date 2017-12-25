@@ -6,7 +6,7 @@ function draw() {
   $("#muxpc .out").html(MUXpc.out);
 
   // Program counter
-  $("#program-counter").html((PROGRAMCOUNTER.value + '').toString(16));
+  $("#program-counter").html(PROGRAMCOUNTER.value);
 
   // Instruction Memory
   $("#instruction-memory").html(INSTRUCTION_MEMORY.join('<br>'));
@@ -22,12 +22,19 @@ function draw() {
   $("#r7").html((REGISTERFILE.registers[7] + '').toString(16));
 
   // Interface IF/ID
-  $("#if-id .op").html(IF_ID.OP);
-  $("#if-id .rA").html(IF_ID.rA);
-  $("#if-id .rB").html(IF_ID.rB);
-  $("#if-id .imm").html(IF_ID.imm);
-  $("#if-id .rC").html(IF_ID.rC);
-  $("#if-id .pc").html((IF_ID.PC+'').toString(16));
+  $("#if-id .op").html((IF_ID.OP_IN+'').toString(3));
+  $("#if-id .rA").html((IF_ID.rA_IN+'').toString(3));
+  $("#if-id .rB").html((IF_ID.rB_IN+'').toString(3));
+  $("#if-id .imm").html((IF_ID.imm_IN+'').toString(4));
+  $("#if-id .rC").html((IF_ID.rC_IN+'').toString(3));
+  $("#if-id .pc").html(IF_ID.PC_IN);
+
+  $("#if-id-out .op").html((IF_ID.OP_OUT + '').toString(3));
+  $("#if-id-out .rA").html((IF_ID.rA_OUT + '').toString(3));
+  $("#if-id-out .rB").html((IF_ID.rB_OUT + '').toString(3));
+  $("#if-id-out .imm").html((IF_ID.imm_OUT + '').toString(4));
+  $("#if-id-out .rC").html((IF_ID.rC_OUT + '').toString(3));
+  $("#if-id-out .pc").html(IF_ID.PC_OUT);
 
   // CTL7
   $("#ctl7 .op").html(CTL7.OP);
@@ -50,37 +57,46 @@ function draw() {
   $(".ctl6-muxop0").html(CTL6.MUXop0);
 
   // Left-shift-6
-  $(".left-shift-6").html(LEFT_SHIFT_6.value);
+  $(".left-shift-6").html(dec2bin(LEFT_SHIFT_6.value).toString(16));
 
   // Sign-ext-7
-  $(".sign-ext-7").html(SIGN_EXT_7.value);
+  $(".sign-ext-7").html(dec2bin(SIGN_EXT_7.value).toString(16));
 
   // MUXop0
   $(".muxop0-signal").html(MUXop0.signal);
   $(".muxop0-out").html(MUXop0.out);
 
   // Interface ID/EX
-  $("#id-ex .op").html(ID_EX.OP);
-  $("#id-ex .rT").html(ID_EX.rT);
-  $("#id-ex .s1").html(ID_EX.s1);
-  $("#id-ex .s2").html(ID_EX.s2);
-  $("#id-ex .pc").html((ID_EX.PC + '').toString(16));
-  $("#id-ex .operand0").html((ID_EX.operand0 + '').toString(16));
-  $("#id-ex .operand2").html((ID_EX.operand2 + '').toString(16));
-  $("#id-ex .operand1").html((ID_EX.operand1 + '').toString(16));
+  $("#id-ex .op").html(ID_EX.OP_IN);
+  $("#id-ex .rT").html(ID_EX.rT_IN);
+  $("#id-ex .s1").html(ID_EX.s1_IN);
+  $("#id-ex .s2").html(ID_EX.s2_IN);
+  $("#id-ex .pc").html((ID_EX.PC_IN));
+  $("#id-ex .operand0").html((ID_EX.operand0_IN + '').toString(16));
+  $("#id-ex .operand2").html((ID_EX.operand2_IN + '').toString(16));
+  $("#id-ex .operand1").html((ID_EX.operand1_IN + '').toString(16));
+
+  $("#id-ex-out .op").html(ID_EX.OP_OUT);
+  $("#id-ex-out .rT").html(ID_EX.rT_OUT);
+  $("#id-ex-out .s1").html(ID_EX.s1_OUT);
+  $("#id-ex-out .s2").html(ID_EX.s2_OUT);
+  $("#id-ex-out .pc").html((ID_EX.PC_OUT));
+  $("#id-ex-out .operand0").html((ID_EX.operand0_OUT + '').toString(16));
+  $("#id-ex-out .operand2").html((ID_EX.operand2_OUT + '').toString(16));
+  $("#id-ex-out .operand1").html((ID_EX.operand1_OUT + '').toString(16));
 
   // Interface EX/MEM
-  $("#ex-mem .op").html(EX_MEM.OP);
-  $("#ex-mem .rT").html(EX_MEM.rT);
-  $("#ex-mem .pc").html((EX_MEM.PC + '').toString(16));
-  $("#ex-mem .store-data").html((EX_MEM.storeData + '').toString(16));
-  $("#ex-mem .alu-output").html((EX_MEM.aluOutput + '').toString(16));
+  $("#ex-mem .op").html(EX_MEM.OP_IN);
+  $("#ex-mem .rT").html(EX_MEM.rT_IN);
+  $("#ex-mem .pc").html((EX_MEM.PC_IN));
+  $("#ex-mem .store-data").html((EX_MEM.storeData_IN + '').toString(16));
+  $("#ex-mem .alu-output").html((EX_MEM.aluOutput_IN + '').toString(16));
 
   // Interface MEM/WB
-  $("#mem-wb .rT").html(MEM_WB.rT);
-  $("#mem-wb .rf-Write-Data").html(MEM_WB.rfWriteData);
+  $("#mem-wb .rT").html(MEM_WB.rT_IN);
+  $("#mem-wb .rf-write-data").html((MEM_WB.rfWriteData_IN+'').toString(16));
 
   // Interface WB/END
-  $("#wb-end .rT").html(WB_END.rT);
-  $("#wb-end .rf-Write-Data").html(WB_END.rfWriteData);
+  $("#wb-end .rT").html(WB_END.rT_IN);
+  $("#wb-end .rf-write-data").html((WB_END.rfWriteData_IN+'').toString(16));
 }

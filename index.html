@@ -33,6 +33,11 @@
             <td colspan="4" id="program-counter"></td>
         </tr>
         <tr>
+            <td colspan="12">
+                <hr>
+            </td>
+        </tr>
+        <tr>
             <td colspan="4">Instruction memory</td>
             <td></td>
             <td colspan="4">REGISTER FILE</td>
@@ -52,6 +57,11 @@
             </td>
         </tr>
         <tr>
+            <td colspan="12">
+                <hr>
+            </td>
+        </tr>
+        <tr>
             <td>OP</td>
             <td>rA</td>
             <td>rB</td>
@@ -64,12 +74,23 @@
             <td>IF/ID</td>
         </tr>
         <tr id="if-id">
-            <td class="op">000</td>
-            <td class="rA">000</td>
-            <td class="rB">000</td>
-            <td class="imm">0000</td>
-            <td class="rC">000</td>
-            <td class="pc">0000000000000000</td>
+            <td class="op"></td>
+            <td class="rA"></td>
+            <td class="rB"></td>
+            <td class="imm"></td>
+            <td class="rC"></td>
+            <td class="pc"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="if-id-out">
+            <td class="op"></td>
+            <td class="rA"></td>
+            <td class="rB"></td>
+            <td class="imm"></td>
+            <td class="rC"></td>
+            <td class="pc"></td>
             <td></td>
             <td></td>
             <td></td>
@@ -124,6 +145,11 @@
             </td>
         </tr>
         <tr>
+            <td colspan="12">
+                <hr>
+            </td>
+        </tr>
+        <tr>
             <td>OP</td>
             <td>rT</td>
             <td>s1</td>
@@ -136,16 +162,33 @@
             <td>ID/EX</td>
         </tr>
         <tr id="id-ex">
-            <td class="op">000</td>
-            <td class="rT">000</td>
-            <td class="s1">000</td>
+            <td class="op"></td>
+            <td class="rT"></td>
+            <td class="s1"></td>
             <td></td>
-            <td class="s2">000</td>
-            <td class="pc">0000000000000000</td>
-            <td class="operand0">0000000000000000</td>
-            <td class="operand2">0000000000000000</td>
-            <td class="operand1">0000000000000000</td>
+            <td class="s2"></td>
+            <td class="pc"></td>
+            <td class="operand0"></td>
+            <td class="operand2"></td>
+            <td class="operand1"></td>
             <td></td>
+        </tr>
+        <tr id="id-ex-out">
+            <td class="op"></td>
+            <td class="rT"></td>
+            <td class="s1"></td>
+            <td></td>
+            <td class="s2"></td>
+            <td class="pc"></td>
+            <td class="operand0"></td>
+            <td class="operand2"></td>
+            <td class="operand1"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                <hr>
+            </td>
         </tr>
         <tr>
             <td>OP</td>
@@ -160,16 +203,21 @@
             <td>EX/MEM</td>
         </tr>
         <tr id="ex-mem">
-            <td class="op">000</td>
-            <td class="rT">000</td>
+            <td class="op"></td>
+            <td class="rT"></td>
             <td></td>
             <td></td>
             <td></td>
-            <td class="pc">0000000000000000</td>
-            <td class="store-data">0000000000000000</td>
+            <td class="pc"></td>
+            <td class="store-data"></td>
             <td></td>
-            <td class="alu-output">0000000000000000</td>
+            <td class="alu-output"></td>
             <td></td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                <hr>
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -185,15 +233,20 @@
         </tr>
         <tr id="mem-wb">
             <td></td>
-            <td class="rT">000</td>
+            <td class="rT"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td class="rf-write-data">0000000000000000</td>
+            <td class="rf-write-data"></td>
             <td></td>
             <td></td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                <hr>
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -209,19 +262,23 @@
         </tr>
         <tr id="wb-end">
             <td></td>
-            <td class="rT">000</td>
+            <td class="rT"></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td class="rf-write-data">0000000000000000</td>
+            <td class="rf-write-data"></td>
             <td></td>
             <td></td>
         </tr>
+        <tr>
+            <td colspan="12">
+                <hr>
+            </td>
+        </tr>
     </table>
     <button id="run">Run</button>  <button id="step">Step</button> <button id="stop">Stop</button>
-
 
     <script src="js/jquery.min.js" charset="utf-8"></script>
     <script src="js/helpers.js" charset="utf-8"></script>
