@@ -40,20 +40,20 @@
         <tr>
             <td colspan="4">Instruction memory</td>
             <td></td>
-            <td colspan="4">REGISTER FILE</td>
+            <!-- <td colspan="4">REGISTER FILE</td> -->
         </tr>
         <tr>
             <td id="instruction-memory" colspan="4"></td>
             <td></td>
             <td colspan="4">
-                r0: <span id="r0">0000000000000000</span><br>
+                <!-- r0: <span id="r0">0000000000000000</span><br>
                 r1: <span id="r1">0000000000000000</span><br>
                 r2: <span id="r2">0000000000000000</span><br>
                 r3: <span id="r3">0000000000000000</span><br>
                 r4: <span id="r4">0000000000000000</span><br>
                 r5: <span id="r5">0000000000000000</span><br>
                 r6: <span id="r6">0000000000000000</span><br>
-                r7: <span id="r7">0000000000000000</span><br>
+                r7: <span id="r7">0000000000000000</span><br> -->
             </td>
         </tr>
         <tr>
@@ -84,17 +84,6 @@
             <td></td>
             <td></td>
         </tr>
-        <tr id="if-id-out">
-            <td class="op"></td>
-            <td class="rA"></td>
-            <td class="rB"></td>
-            <td class="imm"></td>
-            <td class="rC"></td>
-            <td class="pc"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
         <tr>
             <td id="ctl7" colspan="3">
                 <span>CTL7</span><br>
@@ -106,7 +95,7 @@
                 rT_ID_EX: <span class="rT-id-ex"></span><br>
                 pstall: <span class="pstall"></span><br>
             </td>
-            <td colspan="3">
+            <td colspan="3" style="border-left: 1px dashed gray">
                 <span id="muxs2">
                     MUXs2<br>
                     rA: <span class="rA"></span><br>
@@ -120,20 +109,36 @@
                     CTL6_op0: <span class="ctl6-muxop0"></span>
                 </span>
             </td>
-            <td>
+            <td style="border-left: 1px dashed gray">
                 Left-shift-6<br>
                 <span class="left-shift-6"></span><br>
                 <br>
                 Sign-ext-7<br>
                 <span class="sign-ext-7"></span>
-                <br>
+                <br><br>
                 MUXop0<br>
                 signal: <span class="muxop0-signal"></span><br>
                 out: <span class="muxop0-out"></span>
             </td>
 
+            <td style="border-left: 1px dashed gray">
+                TGT<br>
+                <span class="registerfile-tgt-in"></span>
+                <br>
+                SRC1
+                <br>
+                <span class="registerfile-src1-in"></span>
+                <br>
+                SRC2
+                <br>
+                <span class="registerfile-SCR2-in"></span>
+            </td>
+
             <td colspan="4">
-                <!-- REGISTER FILE<br>
+                TGT<br>
+                <span class="registerfile-tgt-content"></span>
+                <br>
+                REGISTER FILE<br>
                 r0: <span id="r0">0000000000000000</span><br>
                 r1: <span id="r1">0000000000000000</span><br>
                 r2: <span id="r2">0000000000000000</span><br>
@@ -141,7 +146,14 @@
                 r4: <span id="r4">0000000000000000</span><br>
                 r5: <span id="r5">0000000000000000</span><br>
                 r6: <span id="r6">0000000000000000</span><br>
-                r7: <span id="r7">0000000000000000</span><br> -->
+                r7: <span id="r7">0000000000000000</span><br>
+                <hr>
+                SCR2<br>
+                <span class="registerfile-scr2-content"></span><br>
+                SCR1
+                <br>
+                <span class="registerfile-scr1-content"></span>
+                <br>
             </td>
         </tr>
         <tr>
@@ -162,18 +174,6 @@
             <td>ID/EX</td>
         </tr>
         <tr id="id-ex">
-            <td class="op"></td>
-            <td class="rT"></td>
-            <td class="s1"></td>
-            <td></td>
-            <td class="s2"></td>
-            <td class="pc"></td>
-            <td class="operand0"></td>
-            <td class="operand2"></td>
-            <td class="operand1"></td>
-            <td></td>
-        </tr>
-        <tr id="id-ex-out">
             <td class="op"></td>
             <td class="rT"></td>
             <td class="s1"></td>

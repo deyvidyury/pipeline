@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>RISC 16 Simulator - Pipeline</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
+    <style media="screen">
+        body{
+            font-family: monospace;
+        }
+        .bd {
+            border: 1px solid gray;
+        }
+        /* div {
+            border: 1px dashed gray;
+        } */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="display-4 text-center">RISC16 Simulator - Pipeline</h3>
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3">
+                instruction memory
+            </div>
+            <div class="col-2">
+                PC
+            </div>
+            <div class="col-4 offset-2">
+                REGISTER FILE
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3" id="instruction-memory"></div>
+            <div class="col-2" id="program-counter"></div>
+            <div class="col-4 offset-2">
+                r0:
+                <span id="r0">0000000000000000</span>
+                <br> r1:
+                <span id="r1">0000000000000000</span>
+                <br> r2:
+                <span id="r2">0000000000000000</span>
+                <br> r3:
+                <span id="r3">0000000000000000</span>
+                <br> r4:
+                <span id="r4">0000000000000000</span>
+                <br> r5:
+                <span id="r5">0000000000000000</span>
+                <br> r6:
+                <span id="r6">0000000000000000</span>
+                <br> r7:
+                <span id="r7">0000000000000000</span>
+                <br>
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2">OP</div>
+                    <div class="col-2">rA</div>
+                    <div class="col-2">rB</div>
+                    <div class="col-3">Imm</div>
+                    <div class="col-2">rC</div>
+                </div>
+            </div>
+            <div class="col-2">
+                PC
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <div class="row justify-content-start" id="if-id">
+                    <div class="col-2 op bd"></div>
+                    <div class="col-2 rA bd"></div>
+                    <div class="col-2 rB bd"></div>
+                    <div class="col-3 imm bd"></div>
+                    <div class="col-2 rC bd"></div>
+                </div>
+            </div>
+            <div id="if-id" class="col-2 bd">
+                <div class="pc"></div>
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-2 offset-3">
+                Left-Shift-6
+            </div>
+            <div class="col-2">
+                Sign-Ext-4
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-2 offset-3 left-shift-6 bd"></div>
+            <div class="col-2 sign-ext-7 bd"></div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2">OP</div>
+                    <div class="col-2">rT</div>
+                    <div class="col-2">s1</div>
+                    <div class="col-2 offset-1">s2</div>
+                </div>
+            </div>
+            <div class="col-2">
+                PC
+            </div>
+            <div class="col-2">
+                Operand0
+            </div>
+            <div class="col-2">
+                Operand2
+            </div>
+            <div class="col-2">
+                Operand1
+            </div>
+        </div>
+        <div class="row justify-content-start" id="id-ex">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2 op bd"></div>
+                    <div class="col-2 rT bd"></div>
+                    <div class="col-2 s1 bd"></div>
+                    <div class="col-2 s2 bd offset-1"></div>
+                </div>
+            </div>
+            <div class="col-2 pc bd"></div>
+            <div class="col-2 operand0 bd"></div>
+            <div class="col-2 operand2 bd"></div>
+            <div class="col-2 operand1 bd"></div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-4 offset-6">
+                ALU
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2">
+                        OP
+                    </div>
+                    <div class="col-2">
+                        rT
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                PC
+            </div>
+            <div class="col-2">
+                STORE DATA
+            </div>
+            <div class="col-2">
+                ALU OUTPUT
+            </div>
+        </div>
+        <div class="row justify-content-start" id="ex-mem">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2 op bd"></div>
+                    <div class="col-2 rT bd"></div>
+                </div>
+            </div>
+            <div class="col-2 pc bd"></div>
+            <div class="col-2 store-data bd"></div>
+            <div class="col-2 alu-output bd"></div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-4 offset-5">
+                DATA MEMORY
+            </div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2">
+                        rT
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 offset-4">
+                RF WRITE DATA
+            </div>
+        </div>
+        <div class="row justify-content-start" id="mem-wb">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2 rT bd"></div>
+                </div>
+            </div>
+            <div class="col-2 offset-4 rf-write-data bd"></div>
+        </div>
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2">
+                        rT
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 offset-4">
+                RF WRITE DATA
+            </div>
+        </div>
+        <div class="row justify-content-start" id="wb-end">
+            <div class="col-3">
+                <div class="row justify-content-start">
+                    <div class="col-2 rT bd"></div>
+                </div>
+            </div>
+            <div class="col-2 offset-4 rf-write-data bd"></div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-1">
+                <button type="button" class="btn btn-info" id="run">Run</button>
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-info" id="step">Step</button>
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-info" id="stop">Stop</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js" charset="utf-8"></script>
+    <script src="js/helpers.js" charset="utf-8"></script>
+    <script src="js/globals.js" charset="utf-8"></script>
+    <script src="js/pipeline_registers.js" charset="utf-8"></script>
+    <script src="js/controls.js" charset="utf-8"></script>
+    <script src="js/muxes.js" charset="utf-8"></script>
+    <script src="js/pipe.js" charset="utf-8"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+    <script src="js/draw.js" charset="utf-8"></script>
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

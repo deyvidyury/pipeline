@@ -29,13 +29,6 @@ function draw() {
   $("#if-id .rC").html((IF_ID.rC_IN+'').toString(3));
   $("#if-id .pc").html(IF_ID.PC_IN);
 
-  $("#if-id-out .op").html((IF_ID.OP_OUT + '').toString(3));
-  $("#if-id-out .rA").html((IF_ID.rA_OUT + '').toString(3));
-  $("#if-id-out .rB").html((IF_ID.rB_OUT + '').toString(3));
-  $("#if-id-out .imm").html((IF_ID.imm_OUT + '').toString(4));
-  $("#if-id-out .rC").html((IF_ID.rC_OUT + '').toString(3));
-  $("#if-id-out .pc").html(IF_ID.PC_OUT);
-
   // CTL7
   $("#ctl7 .op").html(CTL7.OP);
   $("#ctl7 .rA").html(CTL7.rA);
@@ -75,15 +68,6 @@ function draw() {
   $("#id-ex .operand0").html((ID_EX.operand0_IN + '').toString(16));
   $("#id-ex .operand2").html((ID_EX.operand2_IN + '').toString(16));
   $("#id-ex .operand1").html((ID_EX.operand1_IN + '').toString(16));
-
-  $("#id-ex-out .op").html(ID_EX.OP_OUT);
-  $("#id-ex-out .rT").html(ID_EX.rT_OUT);
-  $("#id-ex-out .s1").html(ID_EX.s1_OUT);
-  $("#id-ex-out .s2").html(ID_EX.s2_OUT);
-  $("#id-ex-out .pc").html((ID_EX.PC_OUT));
-  $("#id-ex-out .operand0").html((ID_EX.operand0_OUT + '').toString(16));
-  $("#id-ex-out .operand2").html((ID_EX.operand2_OUT + '').toString(16));
-  $("#id-ex-out .operand1").html((ID_EX.operand1_OUT + '').toString(16));
 
   // Interface EX/MEM
   $("#ex-mem .op").html(EX_MEM.OP_IN);
